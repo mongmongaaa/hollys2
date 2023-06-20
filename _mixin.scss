@@ -1,0 +1,14 @@
+@mixin fon($d,$e){
+    font-family: 'Inter';
+    font-size:$d;
+    font-weight:$e;
+    @content
+}
+
+@mixin flex($a,$b:flax-start,$c:flax-start){ 
+    display: flex;
+    justify-content: $a;
+    align-items: $b;
+    text-align: $c;
+    @content
+} 

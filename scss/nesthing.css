@@ -1,0 +1,39 @@
+@charset "UTF-8";
+:root {
+  --wid:1000px;
+}
+
+header {
+  padding: 20px 0;
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header h1 {
+  font-size: 2rem;
+}
+header nav a {
+  padding: 0 20px;
+  color: red;
+}
+
+main {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.spot figure {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flax-start;
+  flex-wrap: wrap;
+  /* 값을 안 쓰면 기본값이 불러와짐 */
+}
+.spot figure img {
+  width: 30%;
+}
+
+/* 추가하려면 추가하고 싶은 시점에 중괄호를 열어서 값 추가 *//*# sourceMappingURL=nesthing.css.map */

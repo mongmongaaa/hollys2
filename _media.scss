@@ -1,0 +1,104 @@
+pc 최적화 (*작업순서) 
+
+1. 페이지 코딩 (메인 페이지를 기준으로 헤더,메인,풋터 전체 코딩)
+2. 공통 스타일 (헤더,풋터)
+3. 반응형
+    ㄴ분기점 파악 (_media.scss)
+    ㄴ각 페이지 별 반응형 처리(_m-index.scss) 
+
+
+_reset.scss.(태그초기화)
+_common.scss.(공통스타일)
+_media.scss.(반응형 분기점 선언)
+
+공통 믹스인(컬러,버튼,팝업,그리드...기타 등등)
+
+_mixin.scss (명령모음)
+_variable.scss (변수)
+
+#각 페이지별 스타일 문서 
+index.scss/_m-index.scss(mobile,ipad)
+sub.scss/_m-sub.scss(mobile,ipad)
+
+
+
+
+
+scss 폴더 참고(
+    ㄴcomponent, 정의해두고 사용가능한 콘텐츠 (리스트,검색, 공지사항,영상,폼,썸네일)
+    ㄴconfig, (초기화)
+    ㄴlayout, (가로,세로,UI)
+    ㄴthemes,(봄여름겨울시즌관련테마)
+    ㄴuntils  (버튼,아이콘)
+    
+    ) 
+              
+
+
+// 반응형을 만들때 
+// 각각의 미디어 커리 파일을 만들어야함 (하나에다가 하면 무거워짐 )
+// ex) 
+// _m-index.csss < 여기에 @include 하기 
+// _m-sub.scss  
+
+//✔✔✔ @import "_media","_m-index"; 콤마치고 2개 호출도 가능하다고함
+        //    (해상도 스타일/디바이스 별 사이즈, mixin, media) =>_media.scss 
+        //    (각 페이지 별 반응형 스타일) => _m-index.scss
+// 변수는 상단에 고정
+// 미디어는 리셋에 호출해줘도됨 미디어는 항상!!!! ㅊ필요하니 걍 리셋에 넣어주셈 ✔✔✔ 중요
+
+
+// _reset.scss(태그초기화,믹스인,공통스타일,등등 다 집어넣어도 됨)
+
+
+$mobile:('max-width:480px','max-width:767px');
+// 키워드가 맞지않아 오류가났음 '' 안에 작성하면 키워드 : 값이 아닌 그냥 하나의 값으로 들감
+$tablet:('min-width:768px','max-width:1279px');
+$pc:'min-width:1280px';
+// nth($mobile,2)
+
+
+// $dp < 이건 nth의 이름이라고 생각하면 편할듯,,~~~ 
+
+@mixin device($dp){
+
+    @media($dp){
+        @content;
+    }
+    
+}
+
+// 미디어 커리는 큰 순서대로 작성해야함 
+
+
+@include device(nth($mobile,2)){
+
+    
+
+    body{background-color: rgba(162, 0, 255, 0.904);}
+
+}
+
+
+@include device(nth($mobile,1)){
+
+    
+header{
+    width: 100%; /* 헤더는 100% 자식이 가로사이즈를 가져야함 그래야 마즘 ㅇㅇ */
+    padding: 20px 0;
+    div{
+        width: 1470px;
+        margin: 0 auto;
+        @include flex(space-between,center,center){}
+        nav{width: 40%; @include flex(space-around,flax-start,flax-start){}
+        a{text-decoration-line: none;
+        color: black;
+        @include fon(20px,500){}
+        }}
+    }
+}
+    body{background-color: red;}
+
+}
+
+

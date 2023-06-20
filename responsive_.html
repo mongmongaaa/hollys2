@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <header>메뉴</header>
+
+
+
+<picture>  <!-- 크기 변경 시 사진 변경됨 -->
+    <source srcset="./img/24283C3858F778CA2E.jpg" media="(max-width:480px)">
+    <source srcset="./img/corgi-g1a1774f95_1280-1024x682.jpg" media="(max-width:768px)">
+    <img src="./img/national-puppy-day-naver-maps-0a95d167-c69a-41f2-8981-630f9f39f99b.jpg">
+</picture>
+
+
+<style>
+    @media print{
+        header{display:none;} /* 프린트시 헤더를 프린트하지 않음 */
+    }
+    @media (orientation : landscape){body{background-color: blueviolet;}} /* 가로모드 */
+    @media (orientation : portrait){body{background-color: rgb(40, 240, 57);}}  /* 세로모드 */
+    @media (hover:none){picture:hover{border: 5px solid rgb(26, 219, 100);}}  /* 마우스를 눌렀을때 호버효과 뺌  */
+
+    @media not screen and (max-width:480px){
+        body{font-size: 5rem;}
+    } /* 모바일 제외 폰트 사이즈 변경  0부터 480을 제외하고 모두 허용이란 뜻*/
+    /* 스크린은 해상도 이 해상도에서 이 명령을 쓰겠다는 뜻임 안 쓰면 All 전체로 들어감
+    미디어 옆에 있는건 미디어 타입임 스크린은 해상도를 뜻하고 이런 해상도가 있는데 부정을 뜻한 not을 넣으면 이것을 제외한 다는 뜻 */
+     
+
+
+    /* @media (min-width:768px),(min){
+        body{font-size: 5rem;}} */ /* not을 안 쓰고 폰트사이즈 변경하려면 예시  */
+
+        
+
+
+        
+</style>
+    
+</body>
+</html>

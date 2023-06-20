@@ -1,0 +1,198 @@
+
+// 저번시간 복습 
+// @mixin
+// _파일명=> 컴파일 생성안함
+
+// 미디어커리는 분산하는게 좋을 것 같아서 추가 파일생성 
+
+
+
+
+body{box-sizing : border-box; margin: 0; } /* 리셋  쓰셈 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;700;800&display=swap');
+
+@mixin fon($d,$e){
+    font-family: 'Inter';
+    font-size:$d;
+    font-weight:$e;
+    @content
+}
+// $a:flax-start   /* <<이거 기본값임 설정하셈 ㅈㅂㅈㅂ
+// 블럭요소는 기본이 100%임 가로 안써도 됨 */
+
+@mixin flex($a,$b:flax-start,$c:flax-start){ 
+    display: flex;
+    justify-content: $a;
+    align-items: $b;
+    text-align: $c;
+    @content
+} 
+
+// 배열변수 
+// &aaa:(1:ds,2:df,3:ads)
+//  불러쓸때 nth($aaa,1) 이 숫자(키라고함 )눈 뮨자도 ㅇㅋ 
+// @extend .btn ; <이거 쓰면 같은명령어 쓰는애들 값이 그대로 들어와있음
+
+
+@import "_mixin";
+@import "_reset";
+
+// 믹스인이 위에 있어야함
+
+// 태그 기본값 정의, 공통스타일 (헤더, 버튼,푸터,배너,팝업 등등)
+// 공통스타일문서는 common.css 로 많이 정의함 
+// @import url(./css/reset 등등등); < 이건 css문서에서만 씀 
+// html문서에서 안쓰고 css에서만 쓰는 문서들은 앞에 _ 언더바 기호 붙이기 
+// 이걸 붙이면 컴파일이 안됨 = _reset하면 문서생성이 안됨 
+// scss에선 @import "_reset.css"; 로 불러오면 됨 얘는 필요한곳에 호출 가능  
+// 컴파일의 목적 css 파일 만들려고 만들어서 html 문서에 걸려고 
+
+// & < 자기 자신을 말함
+// &::after 일케 쓰삼
+
+header{
+    width: 100%; /* 헤더는 100% 자식이 가로사이즈를 가져야함 그래야 마즘 ㅇㅇ */
+    padding: 20px 0;
+    div{
+        width: 1470px;
+        margin: 0 auto;
+        @include flex(space-between,center,center){}
+        nav{width: 40%; @include flex(space-around,flax-start,flax-start){}
+        a{text-decoration-line: none;
+        color: black;
+        @include fon(20px,500){}
+        }}
+    }
+}
+
+main{
+
+    .mem{
+        width: 100%;
+        height: 347px;
+        background-image: url(./img2/headimg.jpg);
+        background-size: cover;
+        margin: 0 auto;
+        @include flex(center,center,center){}
+        >a{text-decoration-line: none;
+            @include fon(70px,400){}
+            font-style: italic;
+            color: white;
+            opacity: 80%;}
+    }}   
+
+        article{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+        
+            h2{padding: 155px 0 20px;
+                margin: 0;
+                @include fon(30px,800){}}
+            span::before{
+                content: "";
+                display: block;
+                width: 98px;
+                border-bottom:1px solid black;
+                margin: 0;}
+            p{margin: 31px 0 108px;
+            @include fon(15px,300){}
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);}
+           
+        
+        .menu{
+            width: 1470px;
+            display: flex;
+            justify-content: center;
+            padding-bottom:223px;
+            >figure{
+                figcaption{margin-top: 38px;
+                    @include fon(15px,300){}}}
+        }}
+
+        .service{
+            width: 100%; height:788px;
+            background-image: url(./img2/img-sec02.jpg);
+            display: flex;
+            justify-content: flex-end; /* float: right; < 이래도 우측으로 감 */
+            
+            div{width: 50%;
+            h2{span{color: #D91226;}
+            padding: 70px 0 40px; margin: 0;
+            @include fon(35px,700){}}
+            p{margin: 0; padding-bottom: 65px;;
+                @include fon(20px,300){text-align: left;}}
+
+        }}
+        .icon{
+            display: flex;
+            text-align: center;
+
+           /*  width: 30%; 부모가 플렉스를 가지고 있으면 가로 사이즈를 대부분 가지고 있음 */
+            figure{ 
+                $icons:(1:icon_1,2:icon_2,3:icon_3);
+                // 문자보관 => #{변수명}
+                // nth($icons,1)
+                
+                >a{ 
+                 
+                width: 172px; height: 171px;
+                background-color: white;
+                border: 1px solid black;
+                border-radius: 130px;
+                @include flex(center,center,flax-start){}
+                margin-bottom: 21px;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+            
+
+                }
+                
+                @each $number,$name in $icons{ /* < 아래 태그 쓰는 방법임 */
+
+                // &:nth-of-type(1) a{
+                //     background: white url('../img2/#{nth($icons,1)}.png') center no-repeat;
+                // } 
+            
+                &:nth-of-type(#{$number}) a{
+                    background: white url('../img2/#{$name}.png') center no-repeat;
+                } 
+            
+            }
+               
+                figcaption{
+                    span{
+                        @include fon(20px,700){}
+                        line-height: 24px;
+                        text-align: center;
+                        color: #444444;}
+                        @include fon(18px,300){}
+                        color: #6E6E6E;}
+                                   
+                         
+            }
+                }
+
+        
+        
+
+        footer{
+            padding-top: 192px;
+        }
+        
+
+        // ===================================반응형======================================
+
+@import "_media"; /*  < 이건 리셋에 넣어놓고 리셋을 임폴트 */
+// 아직 안만들었지만 @import "미디어인덱스";
+        
+
+
+        
+        
+        
+        
+    
+        

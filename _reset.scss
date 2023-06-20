@@ -1,0 +1,49 @@
+@import "_medea";
+
+
+html,body{margin: 0;}
+body{font-family: 'Segoe UI', sans-serif;}
+h1,h2,p,figure{}
+ul,li,ol{}
+
+table{}
+a{}
+img{}
+
+input,textarea{}
+button{}
+select{}
+
+*{}
+
+
+header{
+    width: 100%; /* 헤더는 100% 자식이 가로사이즈를 가져야함 그래야 마즘 ㅇㅇ */
+    padding: 20px 0;
+    div{
+        width: 1470px;
+        margin: 0 auto;
+        @include flex(space-between,center,center){}
+        nav{width: 40%; @include flex(space-around,flax-start,flax-start){}
+        a{text-decoration-line: none;
+        color: black;
+        @include fon(20px,500){}
+        }}
+    }
+}
+
+
+
+footer{
+    padding-top: 192px;
+}
+
+
+
+
+
+// 풋터,버튼,색상
+// 콘텐츠(컴포넌트)계속 써야하는 것을은 리셋에 쓰기 
+
+// 조금 더 상세하게 분리하려면
+// 다중 페이지 공통스타일 common.scss로 빼기

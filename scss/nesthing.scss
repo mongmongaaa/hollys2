@@ -1,0 +1,53 @@
+
+:root{
+    --wid:1000px;
+}
+// 이것도 변수 어쩌구 하는 거임 
+// 이건 $가 아니라 -- 하이픈 2개 이름 
+// 사용할때는 width:var(--이름); 을 사용함 
+//이건 브라우저에서 변수의 값이 보임 
+
+
+$wid:1000px;
+// 폰트 사이즈, 색상, 플랙스, 정렬 등 그릇에 담아놓고 
+// 정의해두고 가져다 쓰면 편리하다
+// $ < 변수를 선언할때 반드시 넣어줘야하는 기호
+//이건 브라우저에서 변수의 값이 안보임
+
+@mixin flex($x:flax-start,$y:flax-start){ 
+    display: flex;
+    justify-content:$x;
+    align-items:$y;
+    @content;
+}
+
+// @content; <   flex-wrap:wrap 추가한거 했다고 이거 붙여줘야함
+// $x:flax-start << 기본값 설정해줘야함
+
+$x : space-between;
+$y : center;
+
+header{
+    padding: 20px 0;
+    width: $wid;
+    margin: 0 auto;
+
+    @include flex(space-between,center);
+
+    h1{font-size: 2rem;}
+    nav{
+        a{padding: 0 20px;color: red;}
+    }
+}
+
+main{width:$wid; margin: 0 auto;
+}
+
+.spot{
+    figure{margin: 0;
+         @include flex(space-between){
+            flex-wrap:wrap;
+         }; /* 값을 안 쓰면 기본값이 불러와짐 */
+        img{width: 30%;}
+    }
+} /* 추가하려면 추가하고 싶은 시점에 중괄호를 열어서 값 추가 */
